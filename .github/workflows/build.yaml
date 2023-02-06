@@ -1,0 +1,23 @@
+name: Vulnerability Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Vulnerability Check
+      uses: circleci/orb@19.10.1
+      with:
+        orb: whitesource/vulnerability-checker@19.10.1
+        command: run
